@@ -1054,11 +1054,20 @@ prebuilt_etc_xml {
 	soc_specific: true,
 }
 
-sh_binary {
+cc_prebuilt_binary {
 	name: "chargeonlymode",
 	owner: "xiaomi",
-	src: "proprietary/bin/chargeonlymode",
-	filename: "chargeonlymode",
+	target: {
+		android_arm64: {
+			srcs: ["proprietary/bin/chargeonlymode"],
+		},
+	},
+	compile_multilib: "64",
+	check_elf_files: false,
+	strip: {
+		none: true,
+	},
+	prefer: true,
 }
 
 install_symlink {
